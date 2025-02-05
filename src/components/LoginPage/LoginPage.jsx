@@ -29,7 +29,8 @@ function LoginPage() {
     <>
       <h2>Login Page</h2>
       <form onSubmit={handleLogIn}>
-        <label htmlFor="username">Username:</label>
+        <div>
+        <label  htmlFor="username">Username:</label>
         <input
           type="text"
           id="username"
@@ -37,6 +38,7 @@ function LoginPage() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        </div>
         <label htmlFor="password">Password:</label>
         <input
           type="password"

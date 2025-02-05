@@ -16,6 +16,16 @@ CREATE TABLE "user" (
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+CREATE TABLE donations (
+	"id" SERIAL PRIMARY KEY,
+	"Donor_name" VARCHAR(255) NOT NULL,
+	"Donor_address" VARCHAR(255) NOT NULL,
+	"Donor_phone" VARCHAR(20) NOT NULL,
+	"Amount" NUMERIC(10, 2) NOT NULL,
+	"Donation_status" VARCHAR(10) NOT NULL DEFAULT 'not paid' CHECK ("Donation_status" IN ('paid', 'not paid')),
+	"Donation_date" TIMESTAMP DEFAULT current_TIMESTAMP
+);
+
 
 -------------------------------------------------------
 --------------------------------------------------
