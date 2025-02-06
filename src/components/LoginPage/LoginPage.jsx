@@ -27,7 +27,7 @@ function LoginPage() {
 
   return (
     <>
-      <h2>Login Page</h2>
+      <h2>Login </h2>
       <form onSubmit={handleLogIn}>
         <div>
         <label  htmlFor="username">Username:</label>

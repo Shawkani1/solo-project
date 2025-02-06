@@ -16,15 +16,23 @@ CREATE TABLE "user" (
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-CREATE TABLE donations (
-	"id" SERIAL PRIMARY KEY,
-	"Donor_name" VARCHAR(255) NOT NULL,
-	"Donor_address" VARCHAR(255) NOT NULL,
-	"Donor_phone" VARCHAR(20) NOT NULL,
-	"Amount" NUMERIC(10, 2) NOT NULL,
-	"Donation_status" VARCHAR(10) NOT NULL DEFAULT 'not paid' CHECK ("Donation_status" IN ('paid', 'not paid')),
-	"Donation_date" TIMESTAMP DEFAULT current_TIMESTAMP
+CREATE TABLE "donors" (
+	"donor_id" SERIAL PRIMARY KEY,
+	"first_name" VARCHAR(50) NOT NULL,
+	"last_name" VARCHAR(50) NOT NULL,
+	"email" VARCHAR(150) UNIQUE NOT NULL,
+	"phone" VARCHAR(20),
+	"address" VARCHAR(1000) NOT NULL
 );
+
+CREATE TABLE "donations" (
+	"donation_id" SERIAL PRIMARY KEY,
+	"donor_id" INT NOT NULL REFERENCES donors(donor_id) ON DELETE CASCADE,
+	"Amount" NUMERIC(10, 2) NOT NULL,
+	"Donation_date" DATE DEFAULT CURRENT_DATE,
+	"Donation_status" VARCHAR(10) NOT NULL DEFAULT 'not paid' CHECK ("Donation_status" IN ('paid', 'not paid'))
+);
+
 
 
 -------------------------------------------------------
