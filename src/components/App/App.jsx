@@ -2,14 +2,17 @@ import { useEffect } from 'react';
 import {
   Routes,
   Route,
-  Navigate
+  Navigate,
+  BrowserRouter
 } from "react-router-dom";
+
 
 import useStore from '../../zustand/store';
 import Nav from '../Nav/Nav';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+
 
 
 
@@ -24,12 +27,12 @@ function App() {
   return (
     <>
       <header>
-        <h1>Prime Solo Project</h1>
+        <h1 className='text-3xl font-bold underline'>DonorHub</h1>
         <Nav />
       </header>
       <main>
         <Routes>
-          <Route 
+          <Route
             exact path="/"
             element={
               user.id ? (
@@ -39,7 +42,8 @@ function App() {
               )
             }
           />
-          <Route 
+
+          <Route
             exact path="/login"
             element={
               user.id ? (
@@ -49,7 +53,7 @@ function App() {
               )
             }
           />
-          <Route 
+          <Route
             exact path="/registration"
             element={
               user.id ? (
@@ -59,7 +63,7 @@ function App() {
               )
             }
           />
-          <Route 
+          <Route
             exact path="/about"
             element={
               <>
@@ -96,10 +100,12 @@ function App() {
             path="*"
             element={
               <h2>404 Page</h2>
-            } 
+            }
           />
         </Routes>
-      
+
+
+
       </main>
       <footer>
         <p>Copyright © {new Date().getFullYear()}</p>
