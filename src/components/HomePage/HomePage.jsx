@@ -19,22 +19,31 @@ function HomePage() {
     SetFormMode(mode);
   };
 
-  const handleSubmit = () => {
-    if (FormMode === 'add') {
-      console.log('Form Mode added')
-    }
-    else {
-      console.log('Form Mode editable')
-    }
-  }
+  // const handleSubmit = () => {
+  //   if (FormMode === 'add') {
+  //     console.log('Form Mode added')
+  //   }
+  //   else {
+  //     console.log('Form Mode editable')
+  //   }
+  // }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(FormMode === 'edit' ? 'Save Changes' : 'Add Donor');
+    SetIsOpen(false);
+  };
+
 
   return (
     <>
 
       <Navbar onOpen={() => handleopen('add')} />
-      <DonorList />
+      <DonorList  handleOpen={handleopen}/>
       <DonorForm isopen= {isopen} OnSubmit={handleSubmit}
-      onClose= {() => SetIsOpen(false)}/>
+      onClose= {() => SetIsOpen(false)}
+      FormMode={FormMode}
+      />
       <button className="btn btn-error w-full absolute bottom-4 left-1/2 transform -translate-x-1/2" onClick={logOut}>
         Log Out
       </button>
