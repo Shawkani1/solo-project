@@ -1,97 +1,267 @@
-.donor-form-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  width: 90%;
-  max-width: 32rem;
-  z-index: 50;
-}
+/* ==========================================================================
+   Modern, accessible form with enhanced UI/UX
+   ========================================================================== */
 
-.donor-form-box {
-  width: 100%;
-}
-
-.donor-form-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 1rem 0;
-}
-
-.donor-form-content {
-  margin-top: 1.5rem;
-}
-
-.form-input-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  gap: 0.5rem;
-}
-
-.form-input-group.wide {
-  margin-right: 1rem;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-
-.form-select-group {
-  display: flex;
-  margin-bottom: 1rem;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.amount-input {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-right: 1rem;
-}
-
-.status-select {
-  padding: 0.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  background-color: white;
-  width: 100%;
-  max-width: 12rem;
-  font-size: 1rem;
-}
-
-.submit-button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #10b981;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 1.5rem;
-}
-
-.submit-button:hover {
-  background-color: #059669;
-}
-
-/* Modal backdrop */
-.donor-form-modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
+   :root {
+    /* Colors */
+    --form-bg: #ffffff;
+    --form-text: #1f2937;
+    --form-label: #4b5563;
+    --form-border: #e5e7eb;
+    --form-focus: #3b82f6;
+    --form-success: #10b981;
+    --form-success-hover: #059669;
+    --form-shadow: rgba(0, 0, 0, 0.1);
+    --form-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Typography */
+    --form-title-size: 1.5rem;
+    --form-text-size: 1rem;
+    --form-label-size: 0.875rem;
+    
+    /* Spacing */
+    --form-spacing-xs: 0.375rem;
+    --form-spacing-sm: 0.5rem;
+    --form-spacing-md: 1rem;
+    --form-spacing-lg: 1.5rem;
+    --form-spacing-xl: 2rem;
+    
+    /* Animation */
+    --form-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Elevation */
+    --form-shadow-sm: 0 1px 2px 0 var(--form-shadow);
+    --form-shadow-lg: 0 25px 50px -12px var(--form-shadow);
+  }
+  
+  /* Modal Container
+     ========================================================================== */
+  .donor-form-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: var(--form-bg);
+    padding: var(--form-spacing-xl);
+    border-radius: 1rem;
+    border: none;
+    box-shadow: var(--form-shadow-lg);
+    width: 90%;
+    max-width: 32rem;
+    z-index: 50;
+    opacity: 0;
+    animation: modalFadeIn 300ms forwards;
+  }
+  
+  .donor-form-modal[open] {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  
+  /* Modal Content
+     ========================================================================== */
+  .donor-form-box {
+    width: 100%;
+  }
+  
+  .donor-form-title {
+    font-size: var(--form-title-size);
+    font-weight: 700;
+    color: var(--form-text);
+    padding: var(--form-spacing-md) 0;
+    border-bottom: 2px solid var(--form-border);
+    margin-bottom: var(--form-spacing-lg);
+  }
+  
+  .donor-form-content {
+    margin-top: var(--form-spacing-lg);
+  }
+  
+  /* Form Groups
+     ========================================================================== */
+  .form-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--form-spacing-lg);
+    position: relative;
+  }
+  
+  .form-input-group label {
+    font-size: var(--form-label-size);
+    font-weight: 500;
+    color: var(--form-label);
+    margin-bottom: var(--form-spacing-xs);
+  }
+  
+  .form-input-group.wide {
+    margin-right: var(--form-spacing-md);
+  }
+  
+  /* Form Inputs
+     ========================================================================== */
+  .form-input {
+    width: 100%;
+    padding: var(--form-spacing-sm) var(--form-spacing-md);
+    border: 1.5px solid var(--form-border);
+    border-radius: 0.5rem;
+    font-size: var(--form-text-size);
+    transition: all var(--form-transition);
+    background-color: var(--form-bg);
+  }
+  
+  .form-input:hover {
+    border-color: var(--form-focus);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--form-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+  
+  /* Select Group
+     ========================================================================== */
+  .form-select-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--form-spacing-md);
+    margin-bottom: var(--form-spacing-lg);
+    align-items: end;
+  }
+  
+  .amount-input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--form-spacing-xs);
+  }
+  
+  .status-select {
+    padding: var(--form-spacing-sm) var(--form-spacing-md);
+    border: 1.5px solid var(--form-border);
+    border-radius: 0.5rem;
+    background-color: var(--form-bg);
+    width: 100%;
+    font-size: var(--form-text-size);
+    cursor: pointer;
+    transition: all var(--form-transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em;
+    padding-right: 2.5rem;
+  }
+  
+  .status-select:hover {
+    border-color: var(--form-focus);
+  }
+  
+  .status-select:focus {
+    outline: none;
+    border-color: var(--form-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+  
+  /* Submit Button
+     ========================================================================== */
+  .submit-button {
+    width: 100%;
+    padding: var(--form-spacing-md);
+    background-color: var(--form-success);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: var(--form-text-size);
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: var(--form-spacing-xl);
+    transition: all var(--form-transition);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .submit-button:hover {
+    background-color: var(--form-success-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--form-shadow-sm);
+  }
+  
+  .submit-button:active {
+    transform: translateY(0);
+  }
+  
+  /* Modal Backdrop
+     ========================================================================== */
+  .donor-form-modal::backdrop {
+    background-color: var(--form-overlay);
+    backdrop-filter: blur(4px);
+    animation: backdropFadeIn 300ms forwards;
+  }
+  
+  /* Animations
+     ========================================================================== */
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  @keyframes backdropFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Design
+     ========================================================================== */
+  @media (max-width: 640px) {
+    .donor-form-modal {
+      padding: var(--form-spacing-lg);
+      width: 95%;
+    }
+    
+    .form-select-group {
+      grid-template-columns: 1fr;
+      gap: var(--form-spacing-md);
+    }
+  }
+  
+  /* Accessibility
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  .form-input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+  }
+  
+  .form-input:invalid:not(:placeholder-shown):focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  }
+  
+  /* Focus Visible Polyfill
+     ========================================================================== */
+  .js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+  }
+  
+  .js-focus-visible .focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
