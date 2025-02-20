@@ -3,7 +3,8 @@ import {
   Routes,
   Route,
   Navigate,
-  BrowserRouter
+  BrowserRouter,
+  Link
 } from "react-router-dom";
 import useStore from '../../zustand/store';
 import Navbar from '../Navbar/NavBar';
@@ -23,7 +24,18 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1 className="app-title">DonorHub</h1>
+        <div className="header-content">
+          <h1 className="app-title">DonorHub</h1>
+          <nav className="main-nav">
+            <Link to="/about" className="nav-link">About</Link>
+            {!user?.id && (
+              <>
+                <Link to="/login" className="nav-link">Login</Link>
+                <Link to="/registration" className="nav-link">Register</Link>
+              </>
+            )}
+          </nav>
+        </div>
       </header>
 
       <main className="app-main">
@@ -91,6 +103,11 @@ function App() {
                 <p className="about-citation">
                   --From Steve McConnell's <em>Code Complete</em>.
                 </p>
+                {user?.id && (
+                  <Link to="/" className="back-to-donors-button">
+                    Back to Donor List
+                  </Link>
+                )}
               </div>
             }
           />

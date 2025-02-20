@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useStore from '../../zustand/store';
 import './LoginPage.css';
 
@@ -27,6 +28,9 @@ function LoginPage() {
 
   return (
     <div className="login-container">
+      <nav className="auth-nav">
+        <Link to="/about" className="nav-link">About</Link>
+      </nav>
       <h2 className="login-title">Login</h2>
       <form className="login-form" onSubmit={handleLogIn}>
         <div className="form-group">
