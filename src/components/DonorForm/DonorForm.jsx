@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DonorForm({ isopen, onClose, FormMode, OnSubmit }) {
+function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
     const handleClose = () => {
         // Close the modal using the onClose callback from the parent
         onClose();
@@ -12,15 +12,35 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit }) {
         handleClose(); // Closes the modal after submit
     };
 
-    const [Name, setName] = useState('');
-    const [Amount, setAmount] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Phone, setPhone] = useState('');
-    const [Address, setAddress] = useState('');
-    const [status, setStatus] = useState(false);
+    const [name, setName] = useState(initialData?.name || '');
+    const [amount, setAmount] = useState(initialData?.amount ? parseFloat(initialData.amount).toString() : '');
+    const [email, setEmail] = useState(initialData?.email || '');
+    const [phone, setPhone] = useState(initialData?.phone || '');
+    const [address, setAddress] = useState(initialData?.address || '');
+    const [Paid, setPaid] = useState(initialData?.Paid || false);
+    const [Donation_date, setDonationDate] = useState(initialData?.Donation_date || new Date().toISOString().split('T')[0]);
 
+
+    useEffect(() => {
+        if (initialData) {
+            setName(initialData.name || '');
+            setAmount(initialData.amount ? parseFloat(initialData.amount).toString() : '');
+            setEmail(initialData.email || '');
+            setPhone(initialData.phone || '');
+            setAddress(initialData.address || '');
+            setPaid(initialData.Paid || false);
+            setDonationDate(initialData.Donation_date || new Date().toISOString().split('T')[0]);
+        } else {
+            setName('');
+            setAmount('');
+            setEmail('');
+            setPhone('');
+            setAddress('');
+            setPaid(false);
+        }
+    }, [initialData]);
     const handleStatusChange = (e) => {
-        setStatus(e.target.value === 'Paid');
+        setPaid(e.target.value === 'Paid');
     }
 
     
