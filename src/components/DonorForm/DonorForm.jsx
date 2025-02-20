@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './DonorForm.css';
 
 function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
     const handleClose = () => {
@@ -78,49 +79,49 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
 
     return (
         <>
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle" open={isopen}>
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg py-4">
+            <dialog id="my_modal_5" className="donor-form-modal" open={isopen}>
+                <div className="donor-form-box">
+                    <h3 className="donor-form-title">
                         {FormMode === 'edit' ? 'Edit Donor' : 'Donor Details'}</h3>
-                    <div className="modal-action">
+                    <div className="donor-form-content">
                         <form onSubmit={handleSubmit}>
-                            <label className="input input-bordered mr-3 my-3 flex items-center gap-1">
+                            <label className="form-input-group">
                                 Name
-                                <input type="text" className="grow" value={name} onChange={(e) => setName(e.target.value)} required/>
+                                <input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required/>
                             </label>
 
-                            <label className="input input-bordered mr-4 my-3 flex items-center gap-1">
+                            <label className="form-input-group wide">
                                 Email 
-                                <input type="email" className="grow" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                                <input type="email" className="form-input" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                             </label>
 
-                            <label className="input input-bordered mr-4 my-3 flex items-center gap-1">
+                            <label className="form-input-group wide">
                                 Phone
-                                <input type="tel" className="grow" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                <input type="tel" className="form-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
                             </label>
 
-                            <label className="input input-bordered mr-3 my-3 flex items-center gap-2">
+                            <label className="form-input-group">
                                 Address
-                                <input type="text" className="grow" value={address} onChange={(e) => setAddress(e.target.value)} required/>
+                                <input type="text" className="form-input" value={address} onChange={(e) => setAddress(e.target.value)} required/>
                             </label>
 
-                            <label className="input input-bordered mr-4 my-3 flex items-center gap-1">
+                            <label className="form-input-group wide">
                                 Donation Date
                                 <input 
                                     type="date" 
-                                    className="grow" 
+                                    className="form-input" 
                                     value={Donation_date} 
                                     onChange={(e) => setDonationDate(e.target.value)}
                                     required
                                 />
                             </label>
 
-                            <div className="flex mb-4 justify-between">
-                                <label className="input input-bordered mr-4 my-4 flex items-center gap-1">
+                            <div className="form-select-group">
+                                <label className="amount-input">
                                     Amount
                                     <input 
                                         type="number" 
-                                        className="grow" 
+                                        className="form-input" 
                                         value={amount} 
                                         onChange={(e) => setAmount(e.target.value)}
                                         min="0"
@@ -128,13 +129,13 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
                                         required
                                     />
                                 </label>
-                                <select value={Paid ? 'Paid' : 'Not Paid'} className="select select-bordered w-full mr-4 my-4 max-w-xs" onChange={handleStatusChange}>
+                                <select value={Paid ? 'Paid' : 'Not Paid'} className="status-select" onChange={handleStatusChange}>
                                     <option>Paid</option>
                                     <option>Not Paid</option>
                                 </select>
                             </div>
 
-                            <button type="submit" className="btn btn-success">
+                            <button type="submit" className="submit-button">
                                 {FormMode === 'edit' ? 'Save Changes': ' Add a donor'}
                             </button>
                         </form>

@@ -1,0 +1,31 @@
+.navbar-container {
+  @apply navbar bg-base-100;
+}
+
+.navbar-start-section {
+  @apply navbar-start;
+}
+
+.navbar-title {
+  @apply btn btn-ghost text-xl;
+}
+
+.navbar-center-section {
+  @apply navbar-center hidden lg:flex;
+}
+
+.search-control {
+  @apply form-control;
+}
+
+.search-input {
+  @apply input input-bordered w-24 md:w-auto;
+}
+
+.navbar-end-section {
+  @apply navbar-end;
+}
+
+.add-donor-button {
+  @apply btn btn-primary;
+}

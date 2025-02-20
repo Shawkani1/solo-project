@@ -1,0 +1,43 @@
+.donor-form-modal {
+  @apply modal modal-bottom sm:modal-middle;
+}
+
+.donor-form-box {
+  @apply modal-box;
+}
+
+.donor-form-title {
+  @apply font-bold text-lg py-4;
+}
+
+.donor-form-content {
+  @apply modal-action;
+}
+
+.form-input-group {
+  @apply input input-bordered mr-3 my-3 flex items-center gap-1;
+}
+
+.form-input-group.wide {
+  @apply mr-4;
+}
+
+.form-input {
+  @apply grow;
+}
+
+.form-select-group {
+  @apply flex mb-4 justify-between;
+}
+
+.amount-input {
+  @apply input input-bordered mr-4 my-4 flex items-center gap-1;
+}
+
+.status-select {
+  @apply select select-bordered w-full mr-4 my-4 max-w-xs;
+}
+
+.submit-button {
+  @apply btn btn-success;
+}

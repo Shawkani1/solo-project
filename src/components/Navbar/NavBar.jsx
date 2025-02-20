@@ -1,24 +1,21 @@
+import './NavBar.css';
+
 function Navbar({onOpen}) {
   return (
-    <>
-      <div className="navbar bg-base-100">
-  <div className="navbar-start">
-    
-    <a className="btn btn-ghost text-xl">Donors</a>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-
-  <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+    <div className="navbar-container">
+      <div className="navbar-start-section">
+        <a className="navbar-title">Donors</a>
+      </div>
+      <div className="navbar-center-section">
+        <div className="search-control">
+          <input type="text" placeholder="Search" className="search-input" />
+        </div>
+      </div>
+      <div className="navbar-end-section">
+        <button className="add-donor-button" onClick={onOpen}>Add a Donor</button>
+      </div>
     </div>
-    
-  </div>
-  <div className="navbar-end">
-    <a className="btn btn-primary" onClick={onOpen}>Add a Donor</a>
-  </div>
-</div>
-    </>
-  )
+  );
 }
 
 export default Navbar;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './DonorList.css';
 
 function DonorList({ handleOpen, refreshTrigger }) {
     const [donors, setDonors] = useState([]);
@@ -91,28 +92,28 @@ function DonorList({ handleOpen, refreshTrigger }) {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-[200px]">
-                <span className="loading loading-spinner loading-lg"></span>
+            <div className="loading-container">
+                <span className="loading-spinner"></span>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="alert alert-error mt-9">
-                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+            <div className="error-alert">
+                <svg xmlns="http://www.w3.org/2000/svg" className="error-icon" fill="none" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>{error}</span>
-                <button className="btn btn-sm" onClick={fetchDonors}>Try Again</button>
+                <button className="retry-button" onClick={fetchDonors}>Try Again</button>
             </div>
         );
     }
 
     if (donors.length === 0) {
         return (
-            <div className="alert alert-info mt-9">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
+            <div className="empty-alert">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="info-icon">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>No donors found. Add your first donor to get started!</span>
@@ -121,8 +122,8 @@ function DonorList({ handleOpen, refreshTrigger }) {
     }
 
     return (
-        <div className="overflow-x-auto mt-9">
-            <table className="table">
+        <div className="donor-list-container">
+            <table className="donor-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -138,7 +139,7 @@ function DonorList({ handleOpen, refreshTrigger }) {
                 </thead>
                 <tbody>
                     {donors.map((donor) => (
-                        <tr key={donor.donor_id} className="hover">
+                        <tr key={donor.donor_id} className="donor-row">
                             <td>{donor.donor_id}</td>
                             <td>{donor.name}</td>
                             <td>{donor.email}</td>
@@ -149,20 +150,20 @@ function DonorList({ handleOpen, refreshTrigger }) {
                             <td>
                                 <button
                                     onClick={() => handleToggleStatus(donor.donor_id)}
-                                    className={`btn btn-sm rounded-full w-20 ${donor.Paid ? 'btn-primary' : 'btn-outline btn-primary'}`}
+                                    className={`status-button ${donor.Paid ? 'paid' : 'unpaid'}`}
                                 >
                                     {donor.Paid ? 'Paid' : 'Not Paid'}
                                 </button>
                             </td>
-                            <td className="flex gap-2">
+                            <td className="action-cell">
                                 <button
-                                    className="btn btn-secondary btn-sm"
+                                    className="edit-button"
                                     onClick={() => handleOpen('edit', donor)}
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    className="btn btn-error btn-sm"
+                                    className="delete-button"
                                     onClick={() => handleDelete(donor.donor_id)}
                                 >
                                     Delete

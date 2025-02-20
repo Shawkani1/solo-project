@@ -3,6 +3,7 @@ import useStore from '../../zustand/store';
 import DonorList from '../DonorList/DonorList';
 import Navbar from '../Navbar/NavBar';
 import DonorForm from '../DonorForm/DonorForm';
+import './HomePage.css';
 
 function HomePage() {
   const user = useStore((state) => state.user);
@@ -30,7 +31,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen pb-16 relative">
+    <div className="home-container">
       <Navbar onOpen={() => handleOpen('add')} />
       
       <DonorList
@@ -47,7 +48,7 @@ function HomePage() {
       />
 
       <button 
-        className="btn btn-error w-full max-w-md absolute bottom-4 left-1/2 transform -translate-x-1/2" 
+        className="logout-button" 
         onClick={logOut}
       >
         Log Out
