@@ -12,7 +12,7 @@ import Navbar from '../Navbar/NavBar';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-//import SuccessPage from '../SuccessPage/SuccessPage';
+import SuccessPage from '../SuccessPage/SuccessPage';
 import './App.css';
 
 function App() {

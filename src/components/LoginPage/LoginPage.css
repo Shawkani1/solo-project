@@ -221,3 +221,7 @@
       --border-light: #334155;
     }
   }
+
+  .Submit-Button {
+    @apply btn btn-primary w-full mt-6;
+  }
