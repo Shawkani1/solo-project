@@ -18,19 +18,20 @@ CREATE TABLE "user" (
 
 CREATE TABLE "donors" (
 	"donor_id" SERIAL PRIMARY KEY,
-	"Name" VARCHAR(50) NOT NULL,
+	"name" VARCHAR(50) NOT NULL,
 	"email" VARCHAR(150) UNIQUE NOT NULL,
 	"phone" VARCHAR(20),
-	"address" VARCHAR(1000) NOT NULL
-);
-
-CREATE TABLE "donations" (
-	"donation_id" SERIAL PRIMARY KEY,
-	"donor_id" INT NOT NULL REFERENCES donors(donor_id) ON DELETE CASCADE,
-	"Amount" NUMERIC(10, 2) NOT NULL,
+	"address" VARCHAR(1000) NOT NULL,
+	"amount" NUMERIC(10, 2) NOT NULL,
 	"Donation_date" DATE DEFAULT CURRENT_DATE,
 	"Paid" BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+
+INSERT INTO "donors" (name, email, phone, address, amount, Paid) VALUES 
+('Abdirahman Mohamed', 'Abdimo122@gmail.com', '320-400-3445', '1552 Treo Ave S', 100, TRUE ),
+('Ali Ali', 'Abdiis@gmail.com', '320-888-9998', '4522 fskd Ave N', 50, FALSE)
+
 
 
 

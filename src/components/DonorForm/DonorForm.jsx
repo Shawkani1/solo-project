@@ -62,10 +62,10 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit }) {
                             </div>
 
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-success">
-                                {FormMode === 'edit' ? 'Save Changes': ' Add changes'}
+                            <button className="btn btn-success" onClick={handleClose}>
+                                {FormMode === 'edit' ? 'Save Changes': ' Add a donor'}
                             </button>
-                            <button className="btn" onClick={handleClose}>Save Changes</button>
+                            {/* <button className="btn" onClick={handleClose}>Save Changes</button> */}
                         </form>
                     </div>
                 </div>
