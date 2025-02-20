@@ -24,7 +24,6 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1 className="app-title">DonorHub</h1>
-        <Navbar />
       </header>
 
       <main className="app-main">

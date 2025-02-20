@@ -79,3 +79,35 @@
 .add-donor-button:hover {
   background-color: #2563eb;
 }
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  color: #1f2937;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+  margin: 0 0.5rem;
+}
+
+.nav-link:hover {
+  color: #4b5563;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  color: #ef4444;
+  transition: color 0.2s;
+}
+
+.logout-button:hover {
+  color: #dc2626;
+}
+
+.navbar-end-section {
+  gap: 0.5rem;
+}
