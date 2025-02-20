@@ -5,16 +5,12 @@ import {
   Navigate,
   BrowserRouter
 } from "react-router-dom";
-
-
 import useStore from '../../zustand/store';
-import Nav from '../Nav/Nav';
+import Navbar from '../Navbar/NavBar';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
-
-
+import './App.css';
 
 function App() {
   const user = useStore((state) => state.user);
@@ -25,20 +21,21 @@ function App() {
   }, [fetchUser]);
 
   return (
-    <>
-      <header>
-        <h1 className='text-3xl font-bold underline'>DonorHub</h1>
-        <Nav />
+    <div className="app-container">
+      <header className="app-header">
+        <h1 className="app-title">DonorHub</h1>
+        <Navbar />
       </header>
-      <main>
+
+      <main className="app-main">
         <Routes>
           <Route
             exact path="/"
             element={
               user.id ? (
-                <HomePage /> // Render HomePage for authenticated user.
+                <HomePage />
               ) : (
-                <Navigate to="/login" replace /> // Redirect unauthenticated user.
+                <Navigate to="/login" replace />
               )
             }
           />
@@ -47,72 +44,72 @@ function App() {
             exact path="/login"
             element={
               user.id ? (
-                <Navigate to="/" replace /> // Redirect authenticated user.
+                <Navigate to="/" replace />
               ) : (
-                <LoginPage /> // Render LoginPage for unauthenticated user.
+                <LoginPage />
               )
             }
           />
+
           <Route
             exact path="/registration"
             element={
               user.id ? (
-                <Navigate to="/" replace /> // Redirect authenticated user.
+                <Navigate to="/" replace />
               ) : (
-                <RegisterPage /> // Render RegisterPage for unauthenticated user.
+                <RegisterPage />
               )
             }
           />
+
           <Route
             exact path="/about"
             element={
-              <>
-                <h2>About Page</h2>
-                <p>
-                  Intelligence doesn’t seem like an aspect of personal character, and it isn’t.
+              <div className="about-container">
+                <h2 className="about-title">About Page</h2>
+                <p className="about-text">
+                  Intelligence doesn't seem like an aspect of personal character, and it isn't.
                   Coincidentally, great intelligence is only loosely connected to being a good programmer.
                 </p>
-                <p>
-                  What? You don’t have to be superintelligent?
+                <p className="about-text">
+                  What? You don't have to be superintelligent?
                 </p>
-                <p>
-                  No, you don’t. Nobody is really smart enough to program computers.
+                <p className="about-text">
+                  No, you don't. Nobody is really smart enough to program computers.
                   Fully understanding an average program requires an almost limitless capacity
                   to absorb details and an equal capacity to comprehend them all at the same time.
                   The way you focus your intelligence is more important than how much intelligence you have…
                 </p>
-                <p>
+                <p className="about-quote">
                   …most of programming is an attempt to compensate for the strictly limited size of our skulls.
                   The people who are the best programmers are the people who realize how small their brains are.
                   They are humble. The people who are the worst at programming are the people who refuse to
-                  accept the fact that their brains aren’t equal to the task.
+                  accept the fact that their brains aren't equal to the task.
                   Their egos keep them from being great programmers.
-                  The more you learn to compensate for your small brain, the better a programmer you’ll be.
-                  <span className="squiggle"> The more humble you are, the faster you’ll improve.</span>
+                  The more you learn to compensate for your small brain, the better a programmer you'll be.
+                  The more humble you are, the faster you'll improve.
                 </p>
-                <p>
+                <p className="about-citation">
                   --From Steve McConnell's <em>Code Complete</em>.
                 </p>
-              </>
+              </div>
             }
           />
+
           <Route
             path="*"
             element={
-              <h2>404 Page</h2>
+              <h2 className="error-page">404 Page</h2>
             }
           />
         </Routes>
-
-
-
       </main>
-      <footer>
+
+      <footer className="app-footer">
         <p>Copyright © {new Date().getFullYear()}</p>
       </footer>
-    </>
+    </div>
   );
 }
-
 
 export default App;

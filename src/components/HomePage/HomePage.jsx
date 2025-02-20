@@ -34,10 +34,12 @@ function HomePage() {
     <div className="home-container">
       <Navbar onOpen={() => handleOpen('add')} />
       
-      <DonorList
-        handleOpen={handleOpen}
-        refreshTrigger={refreshList}
-      />
+      <div className="content-wrapper">
+        <DonorList
+          handleOpen={handleOpen}
+          refreshTrigger={refreshList}
+        />
+      </div>
       
       <DonorForm
         isopen={isopen}
