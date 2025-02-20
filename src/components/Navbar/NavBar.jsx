@@ -18,7 +18,7 @@ function Navbar({onOpen, onSearch}) {
         <div className="search-control">
           <input 
             type="text" 
-            placeholder="Search donors..." 
+            placeholder="Search donors" 
             className="search-input"
             value={searchTerm}
             onChange={handleSearch}
