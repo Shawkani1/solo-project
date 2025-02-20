@@ -12,7 +12,7 @@
     "@mui/material": "^6.4.4",
     "@mui/styled-engine-sc": "^6.4.3",
     "@tailwindcss/vite": "^4.0.6",
-    "axios": "^1.6.8",
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^9.0.1",
     "dotenv": "^16.0.3",

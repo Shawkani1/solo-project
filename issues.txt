@@ -1,0 +1,81 @@
+Database issues are - ERROR:  column "paid" of relation "donors" does not exist
+LINE 1: ...TO "donors" (name, email, phone, address, amount, Paid) VALU...
+
+I see there's an error in the database related to a column name mismatch. The error indicates that there's an attempt to insert into a "Paid" column but the actual column name in the database is "paid" (case sensitive).
+                                                             ^
+Problem 2: The POST route in donation.router.js is not including the "Paid" column in the INSERT statement, and it's also using inconsistent table name casing ("donors" vs "donors").
+2. There are still some inconsistencies in the donation router that need to be fixed:
+
+- The GET route is using unquoted table name: SELECT * FROM donors
+- The PUT route has inconsistent casing for the fields in req.body (Name, Amount vs name, amount)
+- Need to add "Paid" field handling in the PUT route
+
+
+Problem 3: Need to ensure consistent table name casing for the "Paid" column in the database
+Problem 4:  There are several issues in the DonorList component:
+
+It's using hardcoded data instead of fetching from the API
+The field names don't match our database schema (Status vs Paid, Amount with $ sign)
+The delete button isn't functional
+The edit functionality isn't properly implemented
+Inconsistent casing in property names
+
+
+Solutions of Problem 2: Need to update the POST route to include the "Paid" column
+Need to ensure consistent table name casing
+Need to check the frontend component to ensure it's sending the correct data 
+Now that both DonorForm and DonorList components are updated, let me check the HomePage component to ensure it properly handles the modal state and form submission, and passes the correct props to both components.
+
+I see several issues in the HomePage component:
+
+The handleSubmit function isn't actually submitting any data
+No state management for the selected donor when editing
+No refresh trigger for the donor list after adding/editing
+Form mode state isn't being properly utilized
+Commented out code that should be removed
+
+I see that the donation router needs to be updated to handle the Donation_date field in both POST and PUT routes. I'll also improve the error handling and response format.
+
+I see the issue - we need to fix the order of operations in the database.sql file. The trigger function should be created before any data is inserted, and we should also drop the donors table when starting from scratch.
+
+ update the useEffect hook in DonorForm to also handle the Donation_date when initialData changes. Also, let me update the DonorList to show the donation date column.
+
+
+
+ ----------------------- SUMMARY ----------------------
+ I've completed all the necessary updates to fix the database and frontend integration:
+
+Database Schema and Data:
+
+Fixed INSERT statements to include all fields including Donation_date
+Added proper quotes around column names
+Used proper decimal formatting for amounts
+Added CURRENT_DATE for donation dates
+Donation Router:
+
+Updated all routes to use consistent async/await pattern
+Improved SQL formatting and readability
+Added proper error handling for unique email violations
+Added better logging throughout
+Fixed response formatting
+Added proper handling of Donation_date field
+DonorForm Component:
+
+Added Donation_date field with date picker
+Fixed form field casing to match database
+Added proper validation
+Improved error handling and user feedback
+Added proper initialization for edit mode
+DonorList Component:
+
+Added Donation_date column
+Improved date formatting
+Added loading and error states
+Improved button styling
+Added proper error handling
+The frontend now works correctly with the backend, with proper handling of all fields including the Donation_date and Paid status. To apply these changes:
+
+Drop and recreate your database using the updated database.sql
+Restart your server
+The frontend will automatically work with the new schema
+

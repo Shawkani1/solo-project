@@ -20,7 +20,9 @@ else {
   pool = new pg.Pool({
     host: 'localhost',
     port: 5432,
-    database: 'Solo-Project',   // 👈 Change this to the name of your database!
+    database: 'Solo-Project',   // Database name is correct
+    user: 'postgres',           // PostgreSQL username
+    password: 'admin'           // PostgreSQL password
   });
 }
 
