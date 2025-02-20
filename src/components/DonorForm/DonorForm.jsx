@@ -96,41 +96,70 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
                 </h3>
                 <div className="donor-form-content">
                     <form onSubmit={handleSubmit}>
-                        <label className="form-input-group">
-                            Name
-                            <input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required/>
-                        </label>
-
-                        <label className="form-input-group wide">
-                            Email 
-                            <input type="email" className="form-input" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                        </label>
-
-                        <label className="form-input-group wide">
-                            Phone
-                            <input type="tel" className="form-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                        </label>
-
-                        <label className="form-input-group">
-                            Address
-                            <input type="text" className="form-input" value={address} onChange={(e) => setAddress(e.target.value)} required/>
-                        </label>
-
-                        <label className="form-input-group wide">
-                            Donation Date
+                        <div className="form-input-group">
+                            <label htmlFor="name">Name</label>
                             <input 
+                                id="name"
+                                type="text" 
+                                className="form-input" 
+                                value={name} 
+                                onChange={(e) => setName(e.target.value)} 
+                                required
+                            />
+                        </div>
+
+                        <div className="form-input-group wide">
+                            <label htmlFor="email">Email</label>
+                            <input 
+                                id="email"
+                                type="email" 
+                                className="form-input" 
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                required
+                            />
+                        </div>
+
+                        <div className="form-input-group wide">
+                            <label htmlFor="phone">Phone</label>
+                            <input 
+                                id="phone"
+                                type="tel" 
+                                className="form-input" 
+                                value={phone} 
+                                onChange={(e) => setPhone(e.target.value)} 
+                            />
+                        </div>
+
+                        <div className="form-input-group">
+                            <label htmlFor="address">Address</label>
+                            <input 
+                                id="address"
+                                type="text" 
+                                className="form-input" 
+                                value={address} 
+                                onChange={(e) => setAddress(e.target.value)} 
+                                required
+                            />
+                        </div>
+
+                        <div className="form-input-group wide">
+                            <label htmlFor="donation-date">Donation Date</label>
+                            <input 
+                                id="donation-date"
                                 type="date" 
                                 className="form-input" 
                                 value={Donation_date} 
                                 onChange={(e) => setDonationDate(e.target.value)}
                                 required
                             />
-                        </label>
+                        </div>
 
                         <div className="form-select-group">
-                            <label className="amount-input">
-                                Amount
+                            <div className="amount-input">
+                                <label htmlFor="amount">Amount</label>
                                 <input 
+                                    id="amount"
                                     type="number" 
                                     className="form-input" 
                                     value={amount} 
@@ -139,11 +168,19 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
                                     step="0.01"
                                     required
                                 />
-                            </label>
-                            <select value={Paid ? 'Paid' : 'Not Paid'} className="status-select" onChange={handleStatusChange}>
-                                <option>Paid</option>
-                                <option>Not Paid</option>
-                            </select>
+                            </div>
+                            <div className="status-input">
+                                <label htmlFor="status">Status</label>
+                                <select 
+                                    id="status"
+                                    value={Paid ? 'Paid' : 'Not Paid'} 
+                                    className="status-select" 
+                                    onChange={handleStatusChange}
+                                >
+                                    <option>Paid</option>
+                                    <option>Not Paid</option>
+                                </select>
+                            </div>
                         </div>
 
                         <button type="submit" className="submit-button">
