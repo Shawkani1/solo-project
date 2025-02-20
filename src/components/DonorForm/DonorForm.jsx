@@ -7,7 +7,7 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
     };
 
     const [name, setName] = useState(initialData?.name || '');
-    const [amount, setAmount] = useState(initialData?.amount || '');
+    const [amount, setAmount] = useState(initialData?.amount ? parseFloat(initialData.amount).toString() : '');
     const [email, setEmail] = useState(initialData?.email || '');
     const [phone, setPhone] = useState(initialData?.phone || '');
     const [address, setAddress] = useState(initialData?.address || '');
@@ -17,7 +17,7 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
     useEffect(() => {
         if (initialData) {
             setName(initialData.name || '');
-            setAmount(initialData.amount || '');
+            setAmount(initialData.amount ? parseFloat(initialData.amount).toString() : '');
             setEmail(initialData.email || '');
             setPhone(initialData.phone || '');
             setAddress(initialData.address || '');
@@ -45,7 +45,7 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
             email,
             phone,
             address,
-            amount: Number(amount),
+            amount: parseFloat(amount || 0),
             Paid,
             Donation_date
         };
@@ -118,7 +118,15 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
                             <div className="flex mb-4 justify-between">
                                 <label className="input input-bordered mr-4 my-4 flex items-center gap-1">
                                     Amount
-                                    <input type="number" className="grow" value={amount} onChange={(e) => setAmount(e.target.value)} required/>
+                                    <input 
+                                        type="number" 
+                                        className="grow" 
+                                        value={amount} 
+                                        onChange={(e) => setAmount(e.target.value)}
+                                        min="0"
+                                        step="0.01"
+                                        required
+                                    />
                                 </label>
                                 <select value={Paid ? 'Paid' : 'Not Paid'} className="select select-bordered w-full mr-4 my-4 max-w-xs" onChange={handleStatusChange}>
                                     <option>Paid</option>

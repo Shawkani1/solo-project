@@ -144,7 +144,7 @@ function DonorList({ handleOpen, refreshTrigger }) {
                             <td>{donor.email}</td>
                             <td>{donor.phone || '-'}</td>
                             <td>{donor.address}</td>
-                            <td>${Number(donor.amount).toFixed(2)}</td>
+                            <td>${parseFloat(donor.amount || 0).toFixed(2)}</td>
                             <td>{formatDate(donor.Donation_date)}</td>
                             <td>
                                 <button
