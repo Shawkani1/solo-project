@@ -4,7 +4,8 @@ import {
   Route,
   Navigate,
   BrowserRouter,
-  Link
+  Link,
+  useNavigate
 } from "react-router-dom";
 import useStore from '../../zustand/store';
 import Navbar from '../Navbar/NavBar';
@@ -17,6 +18,8 @@ import './App.css';
 function App() {
   const user = useStore((state) => state.user);
   const fetchUser = useStore((state) => state.fetchUser);
+  const logOut = useStore((state) => state.logOut);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUser();
@@ -29,7 +32,17 @@ function App() {
           <h1 className="app-title">DonorHub</h1>
           <nav className="main-nav">
             <Link to="/about" className="nav-link">About</Link>
-            {!user?.id && (
+            {user?.id ? (
+              <button 
+                className="nav-link logout-button"
+                onClick={async () => {
+                  await logOut();
+                  navigate('/logout-success');
+                }}
+              >
+                Logout
+              </button>
+            ) : (
               <>
                 <Link to="/login" className="nav-link">Login</Link>
                 <Link to="/registration" className="nav-link">Register</Link>
