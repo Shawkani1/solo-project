@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import './DonorList.css';
 
-function DonorList({ handleOpen, refreshTrigger }) {
+function DonorList({ handleOpen, refreshTrigger, searchTerm }) {
     const [donors, setDonors] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,6 +9,19 @@ function DonorList({ handleOpen, refreshTrigger }) {
     useEffect(() => {
         fetchDonors();
     }, [refreshTrigger]);
+
+    const filteredDonors = donors.filter(donor => {
+        if (!searchTerm) return true;
+        const searchLower = searchTerm.toLowerCase();
+        return (
+            donor.name?.toLowerCase().includes(searchLower) ||
+            donor.email?.toLowerCase().includes(searchLower) ||
+            donor.phone?.toLowerCase().includes(searchLower) ||
+            donor.address?.toLowerCase().includes(searchLower) ||
+            donor.amount?.toString().includes(searchTerm) ||
+            donor.Donation_date?.includes(searchTerm)
+        );
+    });
 
     const fetchDonors = async () => {
         try {
@@ -138,7 +151,7 @@ function DonorList({ handleOpen, refreshTrigger }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {donors.map((donor) => (
+                    {filteredDonors.map((donor) => (
                         <tr key={donor.donor_id} className="donor-row">
                             <td>{donor.donor_id}</td>
                             <td>{donor.name}</td>

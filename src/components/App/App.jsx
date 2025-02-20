@@ -11,6 +11,7 @@ import Navbar from '../Navbar/NavBar';
 import HomePage from '../HomePage/HomePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SuccessPage from '../SuccessPage/SuccessPage';
 import './App.css';
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
             exact path="/login"
             element={
               user.id ? (
-                <Navigate to="/" replace />
+                <Navigate to="/login-success" replace />
               ) : (
                 <LoginPage />
               )
@@ -63,10 +64,32 @@ function App() {
           />
 
           <Route
+            exact path="/login-success"
+            element={
+              <SuccessPage 
+                message="Successfully logged in!" 
+                redirectTo="/"
+                delay={1500}
+              />
+            }
+          />
+
+          <Route
+            exact path="/logout-success"
+            element={
+              <SuccessPage 
+                message="Successfully logged out!" 
+                redirectTo="/login"
+                delay={1500}
+              />
+            }
+          />
+
+          <Route
             exact path="/registration"
             element={
               user.id ? (
-                <Navigate to="/" replace />
+                <Navigate to="/login-success" replace />
               ) : (
                 <RegisterPage />
               )

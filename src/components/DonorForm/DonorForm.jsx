@@ -78,71 +78,81 @@ function DonorForm({ isopen, onClose, FormMode, OnSubmit, initialData }) {
     };
 
     return (
-        <>
-            <dialog id="my_modal_5" className="donor-form-modal" open={isopen}>
-                <div className="donor-form-box">
-                    <h3 className="donor-form-title">
-                        {FormMode === 'edit' ? 'Edit Donor' : 'Donor Details'}</h3>
-                    <div className="donor-form-content">
-                        <form onSubmit={handleSubmit}>
-                            <label className="form-input-group">
-                                Name
-                                <input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required/>
-                            </label>
+        <dialog id="my_modal_5" className="donor-form-modal" open={isopen}>
+            <button 
+                className="modal-close-button"
+                onClick={onClose}
+                aria-label="Close modal"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div className="donor-form-box">
+                <h3 className="donor-form-title">
+                    {FormMode === 'edit' ? 'Edit Donor' : 'Add New Donor'}
+                </h3>
+                <div className="donor-form-content">
+                    <form onSubmit={handleSubmit}>
+                        <label className="form-input-group">
+                            Name
+                            <input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required/>
+                        </label>
 
-                            <label className="form-input-group wide">
-                                Email 
-                                <input type="email" className="form-input" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                            </label>
+                        <label className="form-input-group wide">
+                            Email 
+                            <input type="email" className="form-input" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                        </label>
 
-                            <label className="form-input-group wide">
-                                Phone
-                                <input type="tel" className="form-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                            </label>
+                        <label className="form-input-group wide">
+                            Phone
+                            <input type="tel" className="form-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        </label>
 
-                            <label className="form-input-group">
-                                Address
-                                <input type="text" className="form-input" value={address} onChange={(e) => setAddress(e.target.value)} required/>
-                            </label>
+                        <label className="form-input-group">
+                            Address
+                            <input type="text" className="form-input" value={address} onChange={(e) => setAddress(e.target.value)} required/>
+                        </label>
 
-                            <label className="form-input-group wide">
-                                Donation Date
+                        <label className="form-input-group wide">
+                            Donation Date
+                            <input 
+                                type="date" 
+                                className="form-input" 
+                                value={Donation_date} 
+                                onChange={(e) => setDonationDate(e.target.value)}
+                                required
+                            />
+                        </label>
+
+                        <div className="form-select-group">
+                            <label className="amount-input">
+                                Amount
                                 <input 
-                                    type="date" 
+                                    type="number" 
                                     className="form-input" 
-                                    value={Donation_date} 
-                                    onChange={(e) => setDonationDate(e.target.value)}
+                                    value={amount} 
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    min="0"
+                                    step="0.01"
                                     required
                                 />
                             </label>
+                            <select value={Paid ? 'Paid' : 'Not Paid'} className="status-select" onChange={handleStatusChange}>
+                                <option>Paid</option>
+                                <option>Not Paid</option>
+                            </select>
+                        </div>
 
-                            <div className="form-select-group">
-                                <label className="amount-input">
-                                    Amount
-                                    <input 
-                                        type="number" 
-                                        className="form-input" 
-                                        value={amount} 
-                                        onChange={(e) => setAmount(e.target.value)}
-                                        min="0"
-                                        step="0.01"
-                                        required
-                                    />
-                                </label>
-                                <select value={Paid ? 'Paid' : 'Not Paid'} className="status-select" onChange={handleStatusChange}>
-                                    <option>Paid</option>
-                                    <option>Not Paid</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" className="submit-button">
-                                {FormMode === 'edit' ? 'Save Changes': ' Add a donor'}
-                            </button>
-                        </form>
-                    </div>
+                        <button type="submit" className="submit-button">
+                            {FormMode === 'edit' ? 'Save Changes': ' Add a donor'}
+                        </button>
+                    </form>
                 </div>
-            </dialog>
-        </>
+            </div>
+        </dialog>
     )
 }
 

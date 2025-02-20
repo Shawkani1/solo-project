@@ -9,6 +9,7 @@ function HomePage() {
   const [formMode, setFormMode] = useState('add');
   const [selectedDonor, setSelectedDonor] = useState(null);
   const [refreshList, setRefreshList] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleOpen = (mode, donor = null) => {
     setFormMode(mode);
@@ -22,19 +23,25 @@ function HomePage() {
   };
 
   const handleSubmit = async () => {
-    // Trigger refresh of donor list
     setRefreshList(prev => !prev);
+  };
+
+  const handleSearch = (term) => {
+    setSearchTerm(term);
   };
 
   return (
     <div className="home-container">
-      <Navbar onOpen={() => handleOpen('add')} />
+      <Navbar onOpen={() => handleOpen('add')} onSearch={handleSearch} />
       
       <div className="content-wrapper">
-        <DonorList
-          handleOpen={handleOpen}
-          refreshTrigger={refreshList}
-        />
+        <div className="content-card">
+          <DonorList
+            handleOpen={handleOpen}
+            refreshTrigger={refreshList}
+            searchTerm={searchTerm}
+          />
+        </div>
       </div>
       
       <DonorForm
