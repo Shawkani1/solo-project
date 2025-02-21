@@ -87,7 +87,7 @@ function App() {
             }
           />
 
-          <Route
+           <Route
             exact path="/logout-success"
             element={
               <SuccessPage 
@@ -96,7 +96,7 @@ function App() {
                 delay={1500}
               />
             }
-          />
+          /> 
 
           <Route
             exact path="/registration"

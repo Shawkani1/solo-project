@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f8fafc;
+    justify-content: flex-start;
   }
   
   /* Header styles */
@@ -33,10 +34,11 @@
   }
   
   .app-title {
-    font-size: 2rem;
+    font-size: 4vw;
     font-weight: bold;
     color: white;
     margin: 0;
+    text-align: left;
   }
   
   .main-nav {
@@ -119,6 +121,7 @@
     font-weight: bold;
     margin-bottom: 1.5rem;
     color: #1f2937;
+    
   }
   
   .about-text {
