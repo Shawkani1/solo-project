@@ -1,4 +1,10 @@
-# Prime Solo Project - Starting Repo
+DonorHub
+
+## Description
+
+DonorHub is a donation management app designed specifically for organization managers to streamline the donation process. With DonorHub, nonprofits, charities, and fundraising organizations can efficiently track, manage, and analyze donations from Donors all in one centralized platform.
+
+
 
 This version uses React, Zustand, Express, Passport, and PostgreSQL. (A full list of dependencies can be found in `package.json`.)
 
