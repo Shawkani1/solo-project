@@ -4,10 +4,6 @@ DonorHub
 
 DonorHub is a donation management app designed specifically for organization managers to streamline the donation process. With DonorHub, nonprofits, charities, and fundraising organizations can efficiently track, manage, and analyze donations from Donors all in one centralized platform.
 
-
-
-This version uses React, Zustand, Express, Passport, and PostgreSQL. (A full list of dependencies can be found in `package.json`.)
-
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
@@ -42,20 +38,28 @@ Create a new database, then create a `user` table using the query found in `data
         - Log out.
 - Congrats! You now have a starting line for the cool thing you're about to build. 🙂
 
-## Lay of the Land
 
-This repository is intentionally quite minimal. It features the same directory structure that you know and love:
+## Usage
 
-- `src/`: The React application and Zustand store.
-- `public/`: Static assets for the client-side. (In this case, just a `favicon.ico` file.)
-- `server/`: The Express server.
+ *  Register or log in as an organization manager.
 
-Much of the code code is descriptively commented. We recommend reading through the comments, getting a lay of the land, and becoming more comfortable with how it works before you start building on top of it.
+ *  Add and manage donations.
 
-For example, you're going to need to create new React Routes and Nav links as you build out your application. To do so, you'll first need a clear understanding of:
+ *  View and analyze donor data.
 
-- How the `<Route>`s in `App.jsx` function.
-- How the `<NavLink>`s in `Nav.jsx` function.
+ *  Track fundraising campaigns.
+
+## Tech Stack
+
+Frontend: React, Tailwind CSS
+
+Backend: Express.js, Node.js
+
+Authentication: Passport.js
+
+Database: PostgreSQL
+
+
 
 
 
