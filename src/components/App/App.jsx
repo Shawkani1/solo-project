@@ -42,7 +42,9 @@ function App() {
               >
                 Logout
               </button>
+    
             ) : (
+    
               <>
                 <Link to="/login" className="nav-link">Login</Link>
                 <Link to="/registration" className="nav-link">Register</Link>
@@ -147,6 +149,7 @@ function App() {
               </div>
             }
           />
+
 
           <Route
             path="*"

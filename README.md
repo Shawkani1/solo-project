@@ -52,19 +52,4 @@ For example, you're going to need to create new React Routes and Nav links as yo
 - How the `<NavLink>`s in `Nav.jsx` function.
 
 
-## Don't Forget to Update the Documentation
 
-Don't forget to refactor this README file, as well as *the code comments in this project*, to read less like a starter repo and more like a finished project.
-
-## Have Fun
-
-Remember. This is only a two-week sprint! The goal is to:
-
-- **Take the most clear and straightforward path to MVP!**
-- Ensure your MVP functions as expected.
-    - If you're going to build more stuff on top of it, you need to be able to trust it!
-
-Once you've attained that, you'll have the opportunity to:
-
-- Take stock of how much time is left, as well as how much bandwidth you have.
-- Reason about which stretch goal(s) to attempt.
